@@ -1,0 +1,21 @@
+{
+  "name": "strimstram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "parcel serve src/index.html",
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./ --no-source-maps"
+  },
+  "author": "",
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "face-api.js": "^0.22.2",
+    "normalize.css": "^8.0.1",
+    "parcel": "^1.12.4",
+    "webcam-easy": "^1.0.5"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  }
+}
