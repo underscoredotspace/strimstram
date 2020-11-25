@@ -4,8 +4,31 @@ body {
     overflow: hidden;
 }
 
-video {
+video,
+.overlay {
+    position: absolute;
     height: 100vh;
     width: 100vw;
     object-fit: cover;
+}
+
+#emotes span {
+    position: absolute;
+    font-size: 2rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#controls #horse {
+    padding: 1rem;
+    border: 1px solid white;
+    background-color: hotpink;
+    opacity: 0.8;
+    margin-bottom: 2rem;
 }
