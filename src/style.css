@@ -16,6 +16,9 @@ video,
     position: absolute;
     font-size: 2rem;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    width: 2.25rem;
+    height: 2.25rem;
+    text-align: center;
 }
 
 #controls {
@@ -30,5 +33,5 @@ video,
     border: 1px solid white;
     background-color: hotpink;
     opacity: 0.8;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 }

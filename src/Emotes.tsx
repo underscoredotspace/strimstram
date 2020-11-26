@@ -18,7 +18,7 @@ const Emotes = () => {
     return (
         <div className="overlay" id="emotes" ref={ref}>
             {Object.entries(state.horses).map(([id, horse]) => (
-                <Horse {...{ id, ...horse }} />
+                <Horse key={`horse-${id}`} {...{ id, ...horse }} />
             ))}
         </div>
     )

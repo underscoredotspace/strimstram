@@ -10,6 +10,8 @@ export const initialState: RootState = {
     horses: {},
 }
 
+const VELOCITYS = [-2, -3, 3, 2]
+
 export const reducer = (state: RootState, action: Action): RootState => {
     console.log(action)
 
@@ -20,10 +22,10 @@ export const reducer = (state: RootState, action: Action): RootState => {
                 horses: {
                     ...state.horses,
                     [generate()]: {
-                        xPos: random(0, state.width),
-                        yPos: random(0, state.height),
-                        xVel: random(-2, 2),
-                        yVel: random(-2, 2),
+                        xPos: random(0, state.width - 36),
+                        yPos: random(0, state.height - 36),
+                        xVel: VELOCITYS[random(0, 3)],
+                        yVel: VELOCITYS[random(0, 3)],
                     },
                 },
             }
