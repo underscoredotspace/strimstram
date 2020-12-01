@@ -5,14 +5,17 @@ export interface Horse {
     yVel: number
 }
 
+export type HorseId = string
+
 export type RootState = {
     width: number
     height: number
-    horses: Record<string, Horse>
+    horses: Record<HorseId, Horse>
 }
 
 export enum Actions {
     addHorse,
+    moveHorse,
     setWindowSize,
 }
 

@@ -13,8 +13,6 @@ export const initialState: RootState = {
 const VELOCITYS = [-2, -3, 3, 2]
 
 export const reducer = (state: RootState, action: Action): RootState => {
-    console.log(action)
-
     switch (action.type) {
         case Actions.addHorse:
             return {
@@ -27,6 +25,17 @@ export const reducer = (state: RootState, action: Action): RootState => {
                         xVel: VELOCITYS[random(0, 3)],
                         yVel: VELOCITYS[random(0, 3)],
                     },
+                },
+            }
+
+        case Actions.moveHorse:
+            // console.log("moveHorse", JSON.stringify(action.payload))
+
+            return {
+                ...state,
+                horses: {
+                    ...state.horses,
+                    [action.payload.id]: action.payload.horse,
                 },
             }
 
