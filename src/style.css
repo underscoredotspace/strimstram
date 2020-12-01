@@ -4,21 +4,22 @@ body {
     overflow: hidden;
 }
 
-video,
-.overlay {
+.overlay,
+video {
     position: absolute;
     height: 100vh;
     width: 100vw;
     object-fit: cover;
 }
 
-#emotes span {
+.horse {
     position: absolute;
     font-size: 2rem;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     width: 2.25rem;
     height: 2.25rem;
     text-align: center;
+    will-change: translate;
 }
 
 #controls {
@@ -28,10 +29,15 @@ video,
     align-items: center;
 }
 
-#controls #horse {
+#controls #add-emote {
     padding: 1rem;
     border: 1px solid white;
     background-color: hotpink;
     opacity: 0.8;
     margin-bottom: 8rem;
+}
+
+button {
+    padding: 0.25rem;
+    font-size: 2rem;
 }
