@@ -5,17 +5,22 @@
   "main": "src/index.html",
   "scripts": {
     "start": "parcel serve src/index.html",
-    "build": "NODE_ENV=production parcel build src/index.html --public-url ./ --no-source-maps"
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./ --no-source-maps && mkdir dist/models && cp src/models/{tiny_face_detector_mode*,face_landmark_68_tiny_model*} dist/models/"
   },
   "author": "",
   "license": "CC-BY-4.0",
   "dependencies": {
+    "@tensorflow/tfjs-node": "^2.7.0",
+    "canvas": "^2.6.1",
     "face-api.js": "^0.22.2",
+    "node": "^14.15.1",
     "normalize.css": "^8.0.1",
-    "parcel": "^1.12.4",
-    "webcam-easy": "^1.0.5"
+    "parcel": "^1.12.4"
   },
   "devDependencies": {
     "typescript": "^4.1.2"
-  }
+  },
+  "browserslist": [
+    "since 2017-06"
+  ]
 }

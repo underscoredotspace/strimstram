@@ -5,11 +5,17 @@ body {
 }
 
 .overlay,
-video {
+video,
+canvas {
     position: absolute;
     height: 100vh;
     width: 100vw;
     object-fit: cover;
+}
+
+video,
+canvas {
+    transform: scale(-1, 1);
 }
 
 .horse {
