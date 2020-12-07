@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/index.html",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "NODE_ENV=production parcel build src/index.html --public-url ./ --no-source-maps && mkdir dist/models && cp src/models/{tiny_face_detector_mode*,face_landmark_68_tiny_model*} dist/models/"
+    "start": "npm run copymodels && parcel serve src/index.html",
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./ --no-source-maps && npm run copymodels",
+    "copymodels": "mkdir -p dist/models && cp src/models/* dist/models/"
   },
   "author": "",
   "license": "CC-BY-4.0",
