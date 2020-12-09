@@ -1,6 +1,4 @@
 import * as faceapi from "face-api.js"
-import { FaceLandmarks68 } from "face-api.js"
-import { getCenterPoint } from "face-api.js/build/commonjs/utils"
 
 const videoEl = document.querySelector("video")!
 const canvasEl = document.querySelector("canvas")!
