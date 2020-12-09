@@ -38,19 +38,27 @@ const getSpeed = (type: SPEED) => {
 const getInvertedSpeed = (speed: number) =>
     speed > 0 ? getSpeed(SPEED.negative) : getSpeed(SPEED.positive)
 
+const FRAMERATE = 16 // 60fps
+
 ;(() => {
     if (!emotes || !addEmotes) {
         return
     }
 
     const horses: Horse[] = []
+    let lastUpdate = performance.now()
 
-    ;(function animate() {
-        const { width, height } = emotes.getBoundingClientRect()
+    ;(function animate(time: number) {
+        if (lastUpdate + FRAMERATE < time) {
+            lastUpdate = time
 
-        horses.forEach((horse) => horse.animate(width, height))
+            const { width, height } = emotes.getBoundingClientRect()
+
+            horses.forEach((horse) => horse.animate(width, height))
+        }
+
         requestAnimationFrame(animate)
-    })()
+    })(lastUpdate)
 
     addEmotes.forEach((emote) =>
         emote.addEventListener("click", () => {
