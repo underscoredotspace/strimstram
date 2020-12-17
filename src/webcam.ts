@@ -28,7 +28,7 @@ videoEl.onloadedmetadata = () => {
 }
 
 let lastUpdate = 0
-const FRAMERATE = 60
+const FRAMERATE = 200
 const ADJUSTMENT = 1.5
 
 function drawImage(
@@ -86,7 +86,7 @@ async function start(time: number) {
                     tm.y - adjusted.h / 6,
                     adjusted.w,
                     (adjusted.w / mask.width) * mask.height,
-                    angle + 90
+                    angle + 90 + 4
                 )
             }
         }

@@ -38,7 +38,7 @@ const getSpeed = (type: SPEED) => {
 const getInvertedSpeed = (speed: number) =>
     speed > 0 ? getSpeed(SPEED.negative) : getSpeed(SPEED.positive)
 
-const FRAMERATE = 16 // 60fps
+const FRAMERATE = 1000 / 30
 
 ;(() => {
     if (!emotes || !addEmotes) {
