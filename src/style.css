@@ -1,5 +1,15 @@
 @import "normalize.css";
 
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+* {
+    box-sizing: inherit;
+}
+
 body {
     overflow: hidden;
     background-color: #333;
@@ -42,6 +52,11 @@ canvas {
     background-color: hotpink;
     opacity: 0.8;
     margin-bottom: 8rem;
+}
+
+#blue {
+    background-color: #0000ff;
+    opacity: 60%;
 }
 
 button {

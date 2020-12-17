@@ -1,8 +1,18 @@
 import * as faceapi from "face-api.js"
+import { Point } from "face-api.js"
+import { getCenterPoint } from "face-api.js/build/commonjs/utils"
 
 const videoEl = document.querySelector("video")!
 const canvasEl = document.querySelector("canvas")!
 const ctx = canvasEl.getContext("2d")!
+
+const mask = new Image()
+mask.src = require("./headphones.png")
+
+let maskLoaded = false
+mask.onload = () => {
+    maskLoaded = true
+}
 
 navigator.mediaDevices.getUserMedia({ video: {} }).then((stream) => {
     videoEl.srcObject = stream
@@ -18,7 +28,24 @@ videoEl.onloadedmetadata = () => {
 }
 
 let lastUpdate = 0
-const FRAMERATE = 300
+const FRAMERATE = 60
+const ADJUSTMENT = 1.5
+
+function drawImage(
+    image: CanvasImageSource,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    degrees: number
+) {
+    ctx.save()
+    ctx.translate(x + w / 2, y + h / 2)
+    ctx.rotate((-degrees * Math.PI) / 180.0)
+    ctx.translate(-x - w / 2, -y - h / 2)
+    ctx.drawImage(image, x, y, w, h)
+    ctx.restore()
+}
 
 async function start(time: number) {
     if (lastUpdate + FRAMERATE < time) {
@@ -31,30 +58,40 @@ async function start(time: number) {
         if (detection) {
             const dims = faceapi.matchDimensions(canvasEl, videoEl, true)
             const resized = faceapi.resizeResults(detection, dims)
+
             const jaw = resized.landmarks.getJawOutline()
             const right = jaw[0]
             const left = jaw[jaw.length - 1]
-            const { height } = resized.detection.box
-            const width = getDistance(right.x - left.x, right.y - left.y)
+            const height = resized.detection.box.height
 
+            const width = getDistance(right.x - left.x, right.y - left.y)
             const angle = getAngle(right.x - left.x, right.y - left.y)
 
-            ctx.beginPath()
-            ctx.moveTo(left.x, left.y)
-            ctx.lineTo(right.x, right.y)
+            const adjusted = {
+                h: height * ADJUSTMENT,
+                w: width * ADJUSTMENT,
+            }
 
-            ctx.moveTo(left.x, left.y)
             const tl = getLineEnd(left.x, left.y, angle - 90, height / 2)
-            ctx.lineTo(tl.x2, tl.y2)
-
             const tr = getLineEnd(tl.x2, tl.y2, angle, width)
-            ctx.lineTo(tr.x2, tr.y2)
+            const tm = getCenterPoint([
+                { x: tl.x2, y: tl.y2 } as Point,
+                { x: tr.x2, y: tr.y2 } as Point,
+            ])
 
-            ctx.lineTo(right.x, right.y)
-
-            ctx.stroke()
+            if (maskLoaded) {
+                drawImage(
+                    mask,
+                    tm.x - adjusted.w / 2,
+                    tm.y - adjusted.h / 6,
+                    adjusted.w,
+                    (adjusted.w / mask.width) * mask.height,
+                    angle + 90
+                )
+            }
         }
     }
+
     requestAnimationFrame(start)
 }
 
