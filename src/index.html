@@ -11,6 +11,25 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
+        <div class="overlay" id="modal">
+            <h1>Welcome to the Strim!</h1>
+            <p>
+                You can be Shura (if you give permission to use your webcam) -
+                press some emojis and play <b>Forevher</b> in the background for
+                full effect!
+            </p>
+
+            <p>
+                Sorry if it's slow, this was hastily made! (Firefox mobile is
+                super-slow, try Chrome)
+            </p>
+
+            <noscript>
+                <p>Sorry, you need to enable JavaScript for this to work</p>
+            </noscript>
+            <button>OK!</button>
+        </div>
+
         <video id="inputVideo" autoplay muted playsinline></video>
         <div class="overlay" id="blue"></div>
         <canvas id="canvas"></canvas>
@@ -21,9 +40,12 @@
             <div id="add-emote">
                 <button>🐴</button>
                 <button>💙</button>
+                <button>💯</button>
+                <button>🌶</button>
             </div>
         </div>
 
+        <script src="./modal.ts"></script>
         <script src="./webcam.ts"></script>
         <script src="./horses.ts"></script>
     </body>

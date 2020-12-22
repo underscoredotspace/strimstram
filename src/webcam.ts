@@ -14,10 +14,6 @@ mask.onload = () => {
     maskLoaded = true
 }
 
-navigator.mediaDevices.getUserMedia({ video: {} }).then((stream) => {
-    videoEl.srcObject = stream
-})
-
 videoEl.onloadedmetadata = () => {
     Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri("/models"),

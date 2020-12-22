@@ -4,6 +4,7 @@ html,
 body {
     box-sizing: border-box;
     margin: 0;
+    font-size: 19px;
 }
 
 * {
@@ -32,10 +33,8 @@ canvas {
 .horse {
     position: absolute;
     font-size: 2rem;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     width: 2.25rem;
     height: 2.25rem;
-    text-align: center;
     will-change: translate;
 }
 
@@ -46,12 +45,12 @@ canvas {
     align-items: center;
 }
 
+#controls :not(:last-child) {
+    margin-right: 1rem;
+}
+
 #controls #add-emote {
-    padding: 1rem;
-    border: 1px solid white;
-    background-color: hotpink;
-    opacity: 0.8;
-    margin-bottom: 8rem;
+    margin-bottom: 2rem;
 }
 
 #blue {
@@ -60,6 +59,31 @@ canvas {
 }
 
 button {
-    padding: 0.25rem;
-    font-size: 2rem;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+#modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0000ff;
+    z-index: 1000;
+    color: thistle;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+#modal button {
+    color: lightgreen;
+    font-weight: 900;
+}
+
+#modal p {
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+    text-align: center;
 }
