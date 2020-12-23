@@ -2,6 +2,7 @@ import * as faceapi from "face-api.js"
 import { Point } from "face-api.js"
 import { getCenterPoint } from "face-api.js/build/commonjs/utils"
 
+const errorEl = document.querySelector("#error p")!
 const videoEl = document.querySelector("video")!
 const canvasEl = document.querySelector("canvas")!
 const ctx = canvasEl.getContext("2d")!
@@ -19,11 +20,14 @@ videoEl.onloadedmetadata = () => {
         faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
         faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models"),
     ])
-        .then(() => requestAnimationFrame(start))
+        .then(() => {
+            requestAnimationFrame(start)
+        })
         .catch(console.error)
 }
 
 let lastUpdate = 0
+let detected = false
 const FRAMERATE = 200
 const ADJUSTMENT = 1.5
 
@@ -52,6 +56,11 @@ async function start(time: number) {
             .withFaceLandmarks(true)
 
         if (detection) {
+            if (!detected) {
+                errorEl.classList.add("hidden")
+            }
+
+            detected = true
             const dims = faceapi.matchDimensions(canvasEl, videoEl, true)
             const resized = faceapi.resizeResults(detection, dims)
 
@@ -85,6 +94,8 @@ async function start(time: number) {
                     angle + 90 + 4
                 )
             }
+        } else if (!detected && time > 5000) {
+            errorEl.classList.remove("hidden")
         }
     }
 

@@ -82,8 +82,26 @@ button {
     font-weight: 900;
 }
 
-#modal p {
+#modal p,
+#modal h1 {
     max-width: 400px;
     margin: 0 auto 2rem auto;
     text-align: center;
+}
+
+#error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#error p {
+    color: lightgrey;
+    text-align: center;
+    max-width: 300px;
+}
+
+.hidden {
+    display: none;
 }
